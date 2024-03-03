@@ -124,7 +124,7 @@ function loadMore() {
         .querySelector('.image-box')
         .getBoundingClientRect().height;
       window.scrollBy({
-        top: cardSize * 2 + 72,
+        top: cardSize * 2 + 40,
         behavior: 'smooth',
       });
       if (

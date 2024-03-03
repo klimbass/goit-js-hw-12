@@ -161,6 +161,10 @@ a {
   }
 }
 
+.loader-more {
+  margin: 34px auto;
+}
+
 .invisible {
   position: absolute;
   width: 1px;
