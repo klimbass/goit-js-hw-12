@@ -46,7 +46,7 @@ a {
 }
 
 .btn-submit {
-  display: flex;
+  display: inline-block;
   padding: 8px 16px;
   justify-content: center;
   align-items: center;
@@ -62,6 +62,10 @@ a {
   letter-spacing: 0.04em;
   outline: none;
   border: none;
+}
+
+.btn-load-more {
+  margin: 32px auto auto;
 }
 
 .btn-submit:hover,
