@@ -29,6 +29,15 @@ const form = document.querySelector('.form');
 
 const btnLoadMore = document.querySelector('.btn-load-more');
 
+let gallerySimple
+function addsimplelightbox() {
+  gallerySimple = new SimpleLightbox('.gallery a', {
+            captionsData: 'alt',
+            captionDelay: 250,
+          });
+}
+
+
 form.addEventListener('submit', event => {
   event.preventDefault();
   const searchRequest = event.target.elements.input.value.trim();
@@ -43,6 +52,8 @@ form.addEventListener('submit', event => {
       .then(async data => {
         if (data.hits.length === 0) {
           loader.classList.add('invisible');
+          btnLoadMore.classList.add('invisible');  
+
           gallery.innerHTML = '';
           iziToast.error({
             position: 'topRight',
@@ -58,10 +69,7 @@ form.addEventListener('submit', event => {
           gallery.innerHTML = await renderGallery(data.hits);
           optionsSearch.set('page', Number(optionsSearch.get('page')) + 1);
 
-          const gallerySimple = new SimpleLightbox('.gallery a', {
-            captionsData: 'alt',
-            captionDelay: 250,
-          });
+          addsimplelightbox()
           gallerySimple.refresh();
           if (data.hits.length < data.total) {
             btnLoadMore.classList.remove('invisible');
@@ -115,10 +123,6 @@ function loadMore() {
       loaderMore.classList.add('invisible');
       gallery.insertAdjacentHTML('beforeend', renderGallery(data.hits));
       optionsSearch.set('page', Number(optionsSearch.get('page')) + 1);
-      const gallerySimple = new SimpleLightbox('.gallery a', {
-        captionsData: 'alt',
-        captionDelay: 250,
-      });
       gallerySimple.refresh();
       const cardSize = document
         .querySelector('.image-box')
